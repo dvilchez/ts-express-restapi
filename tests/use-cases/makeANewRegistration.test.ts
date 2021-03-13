@@ -5,7 +5,7 @@ import { Course, Teacher } from '../../src/domain/model'
 import { Courses, Teachers } from '../../src/domain/repos'
 
 describe('As a teacher I want to register a new course to teach', () => {
-    it('should fail if the registration already exists', () => {
+    it('should fail if the registration already exists', async () => {
         const teacherEmail = 'teacher@email.com'
         const courseTitle = 'My course'
         const teacher = new Teacher(teacherEmail)
@@ -20,6 +20,7 @@ describe('As a teacher I want to register a new course to teach', () => {
 
         const command = new MakeANewRegistration(courses, teachers)
 
-        expect(() => command.execute(teacherEmail, courseTitle)).toThrow(RegistrationAlreadyExists)
+        await expect(command.execute(teacherEmail, courseTitle)).rejects.toThrow(RegistrationAlreadyExists)
     })
+
 })

@@ -5,10 +5,10 @@ import { Registration } from "./dtos"
 export class MakeANewRegistration {
     constructor(private courses: Courses, private teachers: Teachers){}
 
-    public execute(teacherEmail: string, courseTitle: string) : Registration {
+    public async execute(teacherEmail: string, courseTitle: string) : Promise<Registration> {
         
-        const teacher = this.teachers.findOrCreate(teacherEmail)
-        const course = this.courses.findOrCreate(courseTitle)
+        const teacher = await this.teachers.findOrCreate(teacherEmail)
+        const course = await this.courses.findOrCreate(courseTitle)
 
         if(course.hasBeenProposedBy(teacher)) {
             throw new RegistrationAlreadyExists()

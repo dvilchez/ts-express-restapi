@@ -1,4 +1,3 @@
-import { Teachers } from "../infrastructure/inMemoryRepos";
 import { RegistrationAlreadyExists, TeacherIsNotAProponent, VoteIsRepeated } from "./exceptions";
 
 export type Registration = {
@@ -6,13 +5,12 @@ export type Registration = {
     teacher: string
 }
 
-export type Vote = {
-}
+export type TotalVotes = number
 export class Teacher {
     private voters: Teacher[] = []
     constructor(private email: string){}
 
-    addVote(voter: Teacher) : void {
+    public addVote(voter: Teacher) : void {
         if(this.hasBeenVotedBy(voter)){
             throw new VoteIsRepeated(voter.toString(), this.toString())
         }
@@ -20,8 +18,12 @@ export class Teacher {
         this.voters = [...this.voters, voter]
     }
 
-    hasBeenVotedBy(voter: Teacher): boolean {
+    public hasBeenVotedBy(voter: Teacher): boolean {
         return this.voters.some(v => voter.equal(v))
+    }
+
+    public totalVotes(): TotalVotes {
+        return this.voters.length
     }
 
     public equal (teacher: Teacher): boolean{

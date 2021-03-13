@@ -1,4 +1,3 @@
-import { RegistrationAlreadyExists } from "../domain/exceptions"
 import { Courses, Teachers } from "../domain/repos"
 import { Course, Registration, Teacher } from "../domain/model"
 

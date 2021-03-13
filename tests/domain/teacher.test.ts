@@ -45,4 +45,20 @@ describe('Teacher', () => {
             expect(() => teacher.addVote(voter)).toThrow(VoteIsRepeated)
         })
     })
+
+    describe('totalVotes', () => {
+        it('should return the total number of votes', () => {
+            const voterEmail = 'voter@email.com'
+            const voter2Email = 'voter2@email.com'
+            const teacherEmail = 'teacher@mail.com'
+            const teacher = new Teacher(teacherEmail)
+            const voter = new Teacher(voterEmail)
+            const voter2 = new Teacher(voter2Email)
+
+            teacher.addVote(voter)
+            teacher.addVote(voter2)
+
+            expect(teacher.totalVotes()).toBe(2)
+        })
+    })
 })

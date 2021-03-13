@@ -29,4 +29,10 @@ describe("As a teacher I want to vote for a teacher", () => {
         expect(spy.called).toBe(true)
         expect(spy.args[0][0].hasBeenVotedBy(voter)).toBe(true)
     })
+
+    it('should return the number of votes', async () => {
+        const res = await new VoteForATeacher(teachers).execute(voterEmail, teacherEmail)
+
+        expect(res).toBe(1)
+    })
 })

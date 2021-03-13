@@ -1,4 +1,4 @@
-import { RegistrationAlreadyExists, TeacherIsNotAProponent } from "../../src/domain/exceptions"
+import { RegistrationAlreadyExists, TeacherIsNotAProponent, VoteIsRepeated } from "../../src/domain/exceptions"
 import { Course, Email, Teacher } from "../../src/domain/model"
 
 describe('Course', () => {
@@ -48,6 +48,34 @@ describe('Course', () => {
             course.addProponent(teacher)
 
             expect(() => course.addProponent(teacher)).toThrow(RegistrationAlreadyExists)
+        })
+    })
+
+    describe('hasBeenVotedBy', () => {
+        it('should return true if the voter has voted by the teacher', () => {
+            course.addVote(teacher)
+
+            expect(course.hasBeenVotedBy(teacher)).toBe(true)
+        })
+    })
+
+    describe('addVote', () => {
+        it('should fail if the voter has already voted', () => {
+            course.addVote(teacher)
+
+            expect(() => course.addVote(teacher)).toThrow(VoteIsRepeated)
+        })
+    })
+
+    describe('totalVotes', () => {
+        it('should return the total number of votes', () => {
+            const voter2Email = 'voter2@email.com'
+            const voter2 = new Teacher(Email.fromString(voter2Email))
+
+            teacher.addVote(teacher)
+            teacher.addVote(voter2)
+
+            expect(teacher.totalVotes()).toBe(2)
         })
     })
 })

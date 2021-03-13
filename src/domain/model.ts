@@ -37,11 +37,28 @@ export class Teacher {
 
 export class Course {
     private teachers: Teacher[] = []
+    private voters: Teacher[] = []
 
     constructor(private title: string){}
 
     public hasBeenProposedBy(teacher: Teacher) : boolean {
         return this.teachers.some(t => teacher.equal(t))
+    }
+
+    public addVote(voter: Teacher) : void {
+        if(this.hasBeenVotedBy(voter)){
+            throw new VoteIsRepeated(voter.toString(), this.toString())
+        }
+
+        this.voters = [...this.voters, voter]
+    }
+
+    public hasBeenVotedBy(voter: Teacher): boolean {
+        return this.voters.some(v => voter.equal(v))
+    }
+
+    public totalVotes(): TotalVotes {
+        return this.voters.length
     }
 
     public addProponent(teacher: Teacher) : void {

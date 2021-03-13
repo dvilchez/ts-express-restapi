@@ -1,7 +1,7 @@
 import express, { NextFunction } from "express";
 import { Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
-import { MakeANewRegistration, VoteForATeacher } from '../application'
+import { body, validationResult, oneOf, check } from 'express-validator';
+import { MakeANewRegistration, VoteForACourse, VoteForATeacher } from '../application'
 import { RegistrationAlreadyExists, VoteIsRepeated } from "../domain/exceptions";
 import { Courses, Teachers } from './inMemoryRepos'
 
@@ -45,6 +45,7 @@ router.post("/votes",
     body('voter').isEmail(),    
     body('teacher').optional().isEmail(),    
     body('course').optional().isLength({ min: 5}),
+    oneOf([check('teacher').isEmpty(), check('course').isEmpty()]),
     wrapRoute(async (req: Request, res: Response) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -52,8 +53,16 @@ router.post("/votes",
         }
 
         try{
-            const result = await new VoteForATeacher(teachers).execute(req.body.voter, req.body.teacher)
-            res.json({ teacherVotes: result });
+            let teacherVotes
+            let courseVotes
+            if(req.body.teacher){
+                teacherVotes = await new VoteForATeacher(teachers).execute(req.body.voter, req.body.teacher)
+            }
+            if(req.body.course){
+                courseVotes = await new VoteForACourse(teachers, courses).execute(req.body.voter, req.body.course)
+            }
+
+            res.json({ teacherVotes, courseVotes });
         } catch (err) {
             if (err instanceof VoteIsRepeated){
                 return res.status(401).json({message: err.message})

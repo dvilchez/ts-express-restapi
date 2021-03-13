@@ -78,4 +78,10 @@ describe('Course', () => {
             expect(teacher.totalVotes()).toBe(2)
         })
     })
+
+    describe('toString', () => {
+        it('should return the course identity as a string', () => {
+            expect(course.toString()).toBe(courseTitle)
+        })
+    })
 })

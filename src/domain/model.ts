@@ -80,6 +80,10 @@ export class Course {
     public equal (course: Course): boolean{
         return course.title === this.title
     }
+
+    public toString () : string {
+        return this.title
+    }
 }
 
 export class Email{

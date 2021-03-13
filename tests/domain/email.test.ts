@@ -13,7 +13,7 @@ describe('email', () => {
     })
 
     describe('toString', () => {
-        it('should return the teacher identity as a string', () => {
+        it('should return the email as a string', () => {
             const emailString = 'teacher@mail.com'
             const email = Email.fromString(emailString)
 

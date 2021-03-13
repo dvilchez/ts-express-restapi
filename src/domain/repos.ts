@@ -6,4 +6,5 @@ export interface Teachers {
 
 export interface Courses {
     findOrCreate(courseTitle: string): Promise<Course>
+    save(course: Course): Promise<void>
 }

@@ -14,6 +14,9 @@ export class MakeANewRegistration {
             throw new RegistrationAlreadyExists()
         }
 
-        return {} 
+        course.addProponent(teacher)
+        await this.courses.save(course)
+
+        return {}
     }
 }

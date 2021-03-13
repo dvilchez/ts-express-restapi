@@ -17,3 +17,13 @@ export class TeacherIsNotAProponent extends Error {
         this.__proto__ = trueProto;
     }
 }
+
+export class VoteIsRepeated extends Error {
+    __proto__: Error;
+    constructor(voter: string, to: string){
+        const trueProto = new.target.prototype;
+        super(`The voter ${voter} has already voted for ${to}`)
+        
+        this.__proto__ = trueProto;
+    }
+}

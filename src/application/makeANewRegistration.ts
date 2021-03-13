@@ -9,7 +9,7 @@ export class MakeANewRegistration {
         
         const teacher = await this.teachers.findOrCreate(new Teacher(teacherEmail))
         const course = await this.courses.findOrCreate(new Course(courseTitle))
-        console.log(teacher, course)
+
         if(course.hasBeenProposedBy(teacher)) {
             throw new RegistrationAlreadyExists()
         }

@@ -1,11 +1,28 @@
-import { TeacherIsNotAProponent } from "./exceptions";
+import { Teachers } from "../infrastructure/inMemoryRepos";
+import { TeacherIsNotAProponent, VoteIsRepeated } from "./exceptions";
 
 export type Registration = {
     course: string,
     teacher: string
 }
+
+export type Vote = {
+}
 export class Teacher {
+    private voters: Teacher[] = []
     constructor(private email: string){}
+
+    addVote(voter: Teacher) : void {
+        if(this.hasBeenVotedBy(voter)){
+            throw new VoteIsRepeated(voter.toString(), this.toString())
+        }
+
+        this.voters = [...this.voters, voter]
+    }
+
+    hasBeenVotedBy(voter: Teacher): any {
+        return this.voters.some(v => voter.equal(v))
+    }
 
     public equal (teacher: Teacher): boolean{
        return teacher.email === this.email

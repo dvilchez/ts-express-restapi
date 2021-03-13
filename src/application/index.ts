@@ -1,1 +1,2 @@
 export { MakeANewRegistration } from './makeANewRegistration'
+export { VoteForATeacher } from './voteForATeacher'

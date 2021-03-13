@@ -33,4 +33,10 @@ export class Teachers implements TeachersInterface {
         this.teachers = [...this.teachers, teacher]
         return Promise.resolve(teacher)
     }
+
+    save(teacher: Teacher): Promise<void> {
+        this.teachers=[...this.teachers.filter(c => !teacher.equal(c)), teacher]
+
+        return Promise.resolve()
+    }
 }

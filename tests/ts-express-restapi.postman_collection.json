@@ -20,14 +20,42 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/registration",
+					"raw": "http://localhost:8080/registrations",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"registration"
+						"registrations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VoteForATeacher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"voter\": \"voter@email.com\",\n    \"teacher\": \"teacher@email.com\",\n    \"course\": \"My Course\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/votes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votes"
 					]
 				}
 			},

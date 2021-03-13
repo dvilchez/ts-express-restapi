@@ -27,3 +27,13 @@ export class VoteIsRepeated extends Error {
         this.__proto__ = trueProto;
     }
 }
+
+export class InvalidEmailFormat extends Error {
+    __proto__: Error;
+    constructor(email: string){
+        const trueProto = new.target.prototype;
+        super(`${email} is not a valid email`)
+        
+        this.__proto__ = trueProto;
+    }
+}

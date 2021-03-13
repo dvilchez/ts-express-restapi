@@ -1,5 +1,5 @@
 import sinon from "sinon"
-import { Teacher } from "../../src/domain/model"
+import { Email, Teacher } from "../../src/domain/model"
 import { Teachers } from "../../src/domain/repos"
 import { VoteForATeacher } from '../../src/application'
 
@@ -13,8 +13,8 @@ describe("As a teacher I want to vote for a teacher", () => {
     beforeEach(() => {
         voterEmail = 'teacher@email.com'
         teacherEmail = 'teacher@email.com'
-        voter = new Teacher(voterEmail)
-        teacher = new Teacher(teacherEmail)
+        voter = new Teacher(Email.fromString(voterEmail))
+        teacher = new Teacher(Email.fromString(teacherEmail))
         teachers = {
             findOrCreate: sinon.stub().returns(teacher),
             save: sinon.spy()

@@ -1,7 +1,6 @@
 import sinon from 'sinon'
 import { MakeANewRegistration } from "../../src/application/makeANewRegistration"
-import { RegistrationAlreadyExists } from "../../src/domain/exceptions"
-import { Course, Teacher } from '../../src/domain/model'
+import { Course, Email, Teacher } from '../../src/domain/model'
 import { Courses, Teachers } from '../../src/domain/repos'
 
 describe('As a teacher I want to register a new course to teach', () => {
@@ -15,7 +14,7 @@ describe('As a teacher I want to register a new course to teach', () => {
     beforeEach(() => {
         teacherEmail = 'teacher@email.com'
         courseTitle = 'My course'
-        teacher = new Teacher(teacherEmail)
+        teacher = new Teacher(Email.fromString(teacherEmail))
         course = new Course(courseTitle)
         courses = {
             findOrCreate: sinon.stub().returns(course),

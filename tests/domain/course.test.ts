@@ -1,5 +1,5 @@
 import { RegistrationAlreadyExists, TeacherIsNotAProponent } from "../../src/domain/exceptions"
-import { Course, Teacher } from "../../src/domain/model"
+import { Course, Email, Teacher } from "../../src/domain/model"
 
 describe('Course', () => {
     let teacherEmail : string
@@ -10,7 +10,7 @@ describe('Course', () => {
     beforeEach( () => {
         teacherEmail = 'teacher@email.com'
         courseTitle = 'My Course'
-        teacher = new Teacher(teacherEmail)
+        teacher = new Teacher(Email.fromString(teacherEmail))
         course = new Course(courseTitle)
     })
 

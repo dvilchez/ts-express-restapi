@@ -1,4 +1,4 @@
-import { RegistrationAlreadyExists, TeacherIsNotAProponent, VoteIsRepeated } from "./exceptions";
+import { InvalidEmailFormat, RegistrationAlreadyExists, TeacherIsNotAProponent, VoteIsRepeated } from "./exceptions";
 
 export type Registration = {
     course: string,
@@ -8,7 +8,7 @@ export type Registration = {
 export type TotalVotes = number
 export class Teacher {
     private voters: Teacher[] = []
-    constructor(private email: string){}
+    constructor(private email: Email){}
 
     public addVote(voter: Teacher) : void {
         if(this.hasBeenVotedBy(voter)){
@@ -27,11 +27,11 @@ export class Teacher {
     }
 
     public equal (teacher: Teacher): boolean{
-       return teacher.email === this.email
+       return teacher.email.toString() === this.email.toString()
     }
 
     public toString () : string {
-        return this.email
+        return this.email.toString()
     }
 }
 
@@ -62,5 +62,23 @@ export class Course {
 
     public equal (course: Course): boolean{
         return course.title === this.title
+    }
+}
+
+export class Email{
+    private constructor(private email: string){}
+
+    public static fromString(email: string): Email {
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+        if(email.match(emailRegex) === null){
+            throw new InvalidEmailFormat(email)
+        } 
+
+        return new Email(email)
+    }
+
+    public toString(): string {
+        return this.email
     }
 }

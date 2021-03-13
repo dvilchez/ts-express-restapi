@@ -28,15 +28,6 @@ describe('As a teacher I want to register a new course to teach', () => {
 
     })
 
-    it('should fail if the registration already exists', async () => {
-
-        course.addProponent(teacher)
-        const command = new MakeANewRegistration(courses, teachers)
-
-        await expect(command.execute(teacherEmail, courseTitle))
-            .rejects.toThrow(RegistrationAlreadyExists)
-    })
-
     it('should create a new registration', async () => {
         await new MakeANewRegistration(courses, teachers).execute(teacherEmail, courseTitle)
 

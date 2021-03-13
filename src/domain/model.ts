@@ -1,5 +1,5 @@
 import { Teachers } from "../infrastructure/inMemoryRepos";
-import { TeacherIsNotAProponent, VoteIsRepeated } from "./exceptions";
+import { RegistrationAlreadyExists, TeacherIsNotAProponent, VoteIsRepeated } from "./exceptions";
 
 export type Registration = {
     course: string,
@@ -20,7 +20,7 @@ export class Teacher {
         this.voters = [...this.voters, voter]
     }
 
-    hasBeenVotedBy(voter: Teacher): any {
+    hasBeenVotedBy(voter: Teacher): boolean {
         return this.voters.some(v => voter.equal(v))
     }
 
@@ -43,6 +43,10 @@ export class Course {
     }
 
     public addProponent(teacher: Teacher) : void {
+        if(this.hasBeenProposedBy(teacher)){
+            throw new RegistrationAlreadyExists()
+        }
+
         this.teachers = [...this.teachers, teacher]
     }
 

@@ -1,4 +1,4 @@
-import { TeacherIsNotAProponent } from "../../src/domain/exceptions"
+import { RegistrationAlreadyExists, TeacherIsNotAProponent } from "../../src/domain/exceptions"
 import { Course, Teacher } from "../../src/domain/model"
 
 describe('Course', () => {
@@ -40,6 +40,14 @@ describe('Course', () => {
             const courseInstanceB = new Course('My Course')
 
             expect(courseInstanceA.equal(courseInstanceB)).toBe(true)
+        })
+    })
+
+    describe('addProponent', () => {
+        it('should fail if the teacher is already a proponent', () => {
+            course.addProponent(teacher)
+
+            expect(() => course.addProponent(teacher)).toThrow(RegistrationAlreadyExists)
         })
     })
 })

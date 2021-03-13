@@ -8,11 +8,11 @@ export class Teacher {
     constructor(private email: string){}
 
     public equal (teacher: Teacher): boolean{
-       return teacher.email === this.email;
+       return teacher.email === this.email
     }
 
     public toString () : string {
-        return this.email;
+        return this.email
     }
 }
 
@@ -35,5 +35,9 @@ export class Course {
         }
 
         return {course: this.title, teacher: teacher.toString()}
+    }
+
+    public equal (course: Course): boolean{
+        return course.title === this.title
     }
 }

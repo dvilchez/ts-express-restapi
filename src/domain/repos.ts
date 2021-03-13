@@ -1,10 +1,10 @@
 import { Course, Teacher } from "./model";
 
 export interface Teachers {
-    findOrCreate(teacherEmail: string): Promise<Teacher>
+    findOrCreate(teacher: Teacher): Promise<Teacher>
 }
 
 export interface Courses {
-    findOrCreate(courseTitle: string): Promise<Course>
+    findOrCreate(course: Course): Promise<Course>
     save(course: Course): Promise<void>
 }

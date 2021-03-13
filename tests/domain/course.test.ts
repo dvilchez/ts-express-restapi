@@ -33,4 +33,13 @@ describe('Course', () => {
             expect(() => course.toRegistration(teacher)).toThrow(TeacherIsNotAProponent)
         })
     })
+
+    describe('equal', () => {
+        it('should return true if the entity has the same identity', () => {
+            const courseInstanceA = new Course('My Course')
+            const courseInstanceB = new Course('My Course')
+
+            expect(courseInstanceA.equal(courseInstanceB)).toBe(true)
+        })
+    })
 })

@@ -1,0 +1,1 @@
+export { MakeANewRegistration } from './makeANewRegistration'

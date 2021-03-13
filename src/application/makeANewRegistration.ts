@@ -1,6 +1,6 @@
 import { RegistrationAlreadyExists } from "../domain/exceptions"
 import { Courses, Teachers } from "../domain/repos"
-import { Registration } from "./dtos"
+import { Registration } from "../domain/model"
 
 export class MakeANewRegistration {
     constructor(private courses: Courses, private teachers: Teachers){}
@@ -17,6 +17,6 @@ export class MakeANewRegistration {
         course.addProponent(teacher)
         await this.courses.save(course)
 
-        return {}
+        return course.toRegistration(teacher)
     }
 }

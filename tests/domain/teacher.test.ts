@@ -9,4 +9,13 @@ describe('Teacher', () => {
             expect(teacherInstanceA.equal(teacherInstanceB)).toBe(true)
         })
     })
+
+    describe('toString', () => {
+        it('should return the teacher identity as a string', () => {
+            const teacherEmail = 'teacher@mail.com'
+            const teacher = new Teacher(teacherEmail)
+
+            expect(teacher.toString()).toBe(teacherEmail)
+        })
+    })
 })

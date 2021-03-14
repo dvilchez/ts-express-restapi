@@ -42,7 +42,16 @@ export class Course {
             throw new TeacherIsNotAProponent(teacher.toString(), this.title)
         }
 
-        return {course: this.title, teacher: teacher.toString()}
+        return {
+            course: this.title, 
+            teacher: teacher.toString(), 
+            courseVotes: this.totalVotes(), 
+            teacherVotes:teacher.totalVotes()
+        }
+    }
+
+    public toRegistrations() : Registration[] {
+        return this.teachers.map(t => this.toRegistration(t))
     }
 
     public equal (course: Course): boolean{

@@ -26,7 +26,13 @@ describe('Course', () => {
         it('should return a registration for the course and the selected teacher', () => {
             course.addProponent(teacher)
 
-            expect(course.toRegistration(teacher)).toStrictEqual({course: courseTitle, teacher: teacherEmail})
+            expect(course.toRegistration(teacher))
+                .toStrictEqual({
+                    course: courseTitle, 
+                    teacher: teacherEmail,
+                    courseVotes: 0,
+                    teacherVotes: 0
+                })
         })
 
         it('should fail if the teacher is not a course proponent', () => {
@@ -82,6 +88,20 @@ describe('Course', () => {
     describe('toString', () => {
         it('should return the course identity as a string', () => {
             expect(course.toString()).toBe(courseTitle)
+        })
+    })
+
+    describe('toRegistrations', () => {
+        it('should return all the registration for the course', () => {
+            course.addProponent(teacher)
+
+            expect(course.toRegistrations()).toStrictEqual(
+                [{
+                    course: courseTitle, 
+                    teacher: teacherEmail,
+                    courseVotes: 0,
+                    teacherVotes: 0 
+                }])
         })
     })
 })

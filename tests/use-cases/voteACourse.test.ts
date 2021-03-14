@@ -22,7 +22,9 @@ describe("As a teacher I want to vote for a course", () => {
         } as Teachers
         courses = {
             findOrCreate: sinon.stub().returns(course),
-            save: sinon.spy()
+            save: sinon.spy(),
+            find: sinon.stub(),
+            count: sinon.stub()
         } as Courses
 
     })

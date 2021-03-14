@@ -1,5 +1,5 @@
 export { Course } from './course'
 export { Email } from './email'
-export { Registration } from './registration'
+export { Registration, RegistrationsList } from './registration'
 export { Teacher } from './teacher'
 export { TotalVotes } from './totalVotes'

@@ -1,9 +1,9 @@
 # Description
-This project tries to give en reference implementation to create a API RESTish using NODEJS, EXPRESS and TYPESCRIPT.
+This project tries to offer a implementation of reference to create a RESTish API using NODEJS, EXPRESS and TYPESCRIPT.
 
 # Principles, patterns used in this implementation
 
-* The model is inspired in the set of tactic patterns exposes in Domain Driven Design. You can find, entities, aggregates, value objects and repositories.
+* The model is inspired in the set of tactic patterns exposed in Domain Driven Design. You can find, entities, aggregates, value objects and repositories.
 
 * Separation of layers. The application is distributed in three layers, application, domain and infrastructure. The communication between layers only travel in this direction Infrastructure -> Application -> Domain.
 
@@ -29,13 +29,16 @@ This project tries to give en reference implementation to create a API RESTish u
 - [ ] Add OpenAPI doc
 - [ ] Generalize exceptions
 - [ ] Refactor express adapters
+- [ ] Dependency container
+- [ ] Configuration
+- [ ] Data access repo
 
 # Run app
 `````
 npm install
 npm start
 `````
-You can import the postman collection to see the exposed routes but just in case these are the current endpoints serving from localhost without change the default port.
+You can import the postman collection to see the exposed routes but, just in case, these are the current endpoints for the default configuration.
 
 * Make a new registration: curl -X POST -H "Content-Type: application/json" -d '{"teacher": "teacher4@email.com","course": "My Course"}' http://localhost:8080/registrations
 

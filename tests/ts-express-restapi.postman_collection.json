@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"teacher\": \"teacher@email.com\",\n    \"course\": \"My Course\"\n}",
+					"raw": "{\n    \"teacher\": \"teacher4@email.com\",\n    \"course\": \"My Course\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"voter\": \"voter4@email.com\",\n    \"teacher\": \"teacher@email.com\"\n\n}",
+					"raw": "{\n    \"voter\": \"voter6@email.com\",\n    \"teacher\": \"teacher@email.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"voter\": \"voter6@email.com\",\n    \"course\": \"My course\"\n}",
+					"raw": "{\n    \"voter\": \"voter6@email.com\",\n    \"course\": \"My Course\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

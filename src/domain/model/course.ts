@@ -50,10 +50,6 @@ export class Course {
         }
     }
 
-    public toRegistrations() : Registration[] {
-        return this.teachers.map(t => this.toRegistration(t))
-    }
-
     public equal (course: Course): boolean{
         return course.title === this.title
     }

@@ -90,18 +90,4 @@ describe('Course', () => {
             expect(course.toString()).toBe(courseTitle)
         })
     })
-
-    describe('toRegistrations', () => {
-        it('should return all the registration for the course', () => {
-            course.addProponent(teacher)
-
-            expect(course.toRegistrations()).toStrictEqual(
-                [{
-                    course: courseTitle, 
-                    teacher: teacherEmail,
-                    courseVotes: 0,
-                    teacherVotes: 0 
-                }])
-        })
-    })
 })

@@ -1,8 +1,8 @@
-import express, { NextFunction } from "express";
-import { Request, Response } from 'express';
-import { body, validationResult, oneOf, check } from 'express-validator';
-import { MakeANewRegistration, VoteForACourse, VoteForATeacher } from '../application'
-import { RegistrationAlreadyExists, VoteIsRepeated } from "../domain/exceptions";
+import express, { NextFunction } from "express"
+import { Request, Response } from 'express'
+import { body, validationResult, oneOf, check } from 'express-validator'
+import { GetListOfRegistrations, MakeANewRegistration, VoteForACourse, VoteForATeacher } from '../application'
+import { RegistrationAlreadyExists, VoteIsRepeated } from "../domain/exceptions"
 import { Courses, Teachers } from './inMemoryRepos'
 
 const router: express.Router = express.Router();
@@ -18,6 +18,19 @@ const wrapRoute = (fn: (req: Request, res: Response, next: NextFunction) => void
         }
     }
 }
+
+router.get("/registrations",
+    wrapRoute(async (req: Request, res: Response) => {
+        const skip = +(req.query.skip || 0)
+        const limit = Math.min(+(req.query.limit || 10), 50)
+        const registrationsList = await new GetListOfRegistrations(courses).execute(limit, skip)
+
+        res.json({
+            has_more: skip+limit < registrationsList.total,
+            data: registrationsList.registrations
+        });
+    }
+));
 
 router.post("/registrations",
     body('teacher').isEmail(),    

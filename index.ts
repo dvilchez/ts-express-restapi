@@ -1,7 +1,6 @@
 import express, {Request, Response, NextFunction} from 'express';
 import cors from "cors";
 import { appRouter } from './src/infrastructure/routes'
-import { restore } from 'sinon';
 
 const port = process.env.PORT || 8080;
 

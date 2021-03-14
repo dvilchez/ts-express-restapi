@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"voter\": \"voter@email.com\",\n    \"teacher\": \"teacher@email.com\",\n    \"course\": \"My Course\"\n\n}",
+					"raw": "{\n    \"voter\": \"voter4@email.com\",\n    \"teacher\": \"teacher@email.com\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -56,6 +56,63 @@
 					"port": "8080",
 					"path": [
 						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VoteForACourse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"voter\": \"voter6@email.com\",\n    \"course\": \"My course\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/votes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRegistrationsList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/registrations?skip=0&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"registrations"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
 					]
 				}
 			},

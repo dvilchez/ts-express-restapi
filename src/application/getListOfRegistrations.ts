@@ -6,12 +6,12 @@ export class GetListOfRegistrations {
 
     public async execute(limit: number, skip: number) : Promise<RegistrationsList> {
         
-        const count = await this.courses.count()
-        const coursesList = await this.courses.find(limit, skip)
+        const count = await this.courses.countRegistrations()
+        const registrations = await this.courses.findRegistrations(limit, skip)
 
         return {
             total: count,
-            registrations: coursesList.map(c => c.toRegistrations()).reduce((acc, val) => [ ...acc, ...val ], [])
+            registrations: registrations
         } as RegistrationsList
     }
 }

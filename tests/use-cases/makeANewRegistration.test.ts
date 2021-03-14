@@ -18,7 +18,9 @@ describe('As a teacher I want to register a new course to teach', () => {
         course = new Course(courseTitle)
         courses = {
             findOrCreate: sinon.stub().returns(course),
-            save: sinon.spy()
+            save: sinon.spy(),
+            findRegistrations: sinon.stub(),
+            countRegistrations: sinon.stub()
         } as Courses
         teachers = {
             findOrCreate: sinon.stub().returns(teacher),

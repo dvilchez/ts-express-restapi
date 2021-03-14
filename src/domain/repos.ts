@@ -1,4 +1,4 @@
-import { Course, Teacher } from "./model";
+import { Course, Registration, Teacher } from "./model";
 
 export interface Teachers {
     findOrCreate(teacher: Teacher): Promise<Teacher>
@@ -8,6 +8,6 @@ export interface Teachers {
 export interface Courses {
     findOrCreate(course: Course): Promise<Course>
     save(course: Course): Promise<void>
-    find(limit: number, skip: number): Promise<Course[]>
-    count(): Promise<number>
+    findRegistrations(limit: number, skip: number): Promise<Registration[]>
+    countRegistrations(): Promise<number>
 }
